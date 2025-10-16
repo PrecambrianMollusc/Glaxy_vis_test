@@ -903,7 +903,7 @@ const metaControls = addTitleAndCreditsUI();
 loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/star_cloud.glb', (gltf) => {
   const cloud = gltf.scene;
   
-  console.log('GLTF loaded:', model);
+  console.log('GLTF loaded:', cloud);
     cloud.traverse(obj => {
     if (obj.isMesh) {
       console.log('Material:', obj.material);
