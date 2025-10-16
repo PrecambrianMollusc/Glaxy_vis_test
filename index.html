@@ -155,7 +155,7 @@ loader.setDRACOLoader(dracoLoader);
   
   // load the gtlf file 
   // const loader = new GLTFLoader();
-  loader.load('https://precambrianmollusc.github.io/Galaxy_He_levels/galaxy_optimized.glb', (gltf) => {
+  loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/galaxy_optimized.glb', (gltf) => {
     const model = gltf.scene;
     scene.add(model);
     console.log('GLTF loaded:', model);
@@ -400,7 +400,7 @@ scene.add(He_mass_group);
           
           // Load texture
           const textureLoader = new THREE.TextureLoader();
-          const groundTexture = textureLoader.load('https://precambrianmollusc.github.io/Galaxy_He_levels/gamegalaxy-4500px.png');
+          const groundTexture = textureLoader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/gamegalaxy-4500px.png');
           
           // Material
           const groundMaterial = new THREE.MeshBasicMaterial({
@@ -899,6 +899,13 @@ const metaControls = addTitleAndCreditsUI();
 
     
 }); // ← closes loader.load
+
+loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/star_cloud.glb', (gltf) => {
+    const model = gltf.scene;
+    scene.add(model);
+    console.log('Second GLTF loaded:', model);
+});
+
 
 
 const info = document.createElement('div');
