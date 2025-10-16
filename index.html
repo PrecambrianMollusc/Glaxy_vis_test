@@ -900,6 +900,9 @@ const metaControls = addTitleAndCreditsUI();
     
 }); // ← closes loader.load
 
+const scale = 45000 / 32000; // same as Python
+const center = new THREE.Vector3(x, y, z); // from Python
+  
 loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/star_cloud.glb', gltf => {
   const cloud = gltf.scene;
  console.log('GLTF loaded-: ', cloud);
@@ -937,11 +940,18 @@ loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/star_cloud.glb'
       mat.needsUpdate = true;
     }
   });
+  
+  cloud.traverse(obj => {
+    if (obj.isPoints) {
+      obj.scale.setScalar(scale);      // uniform rescale
+      obj.position.copy(center);       // recenter
+    }
+  });
 
   scene.add(cloud);
 });
 
-  
+ 
 
 const info = document.createElement('div');
 info.style.position = 'absolute';
