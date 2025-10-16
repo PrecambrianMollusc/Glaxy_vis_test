@@ -903,33 +903,37 @@ const metaControls = addTitleAndCreditsUI();
 loader.load('https://precambrianmollusc.github.io/Glaxy_vis_test/star_cloud.glb', (gltf) => {
   const cloud = gltf.scene;
   
-  console.log('GLTF loaded:', cloud);
-    cloud.traverse(obj => {
-    if (obj.isMesh) {
-      console.log('Material:', obj.material);
-    }
-  });
+console.log('GLTF loaded: -', cloud);
+loader.load('star_cloud.glb', gltf => {
+  const cloud = gltf.scene;
 
   cloud.traverse(obj => {
+    console.log('Object:', obj); // log every object
+
     if (obj.isMesh) {
+      console.log('Found mesh:', obj);
+
       const mat = obj.material;
 
-      // Set orange color
-      mat.color.set(0xffa500); // or use 'orange'
+      // Optional: log material type
+      console.log('Material type:', mat.type);
 
-      // Set low opacity
+      // Apply styling
+      mat.color.set(0xffa500);
       mat.transparent = true;
-      mat.opacity = 0.04;
+      mat.opacity = 0.3;
 
-      // Set small point size (if using PointsMaterial)
       if ('size' in mat) {
-        mat.size = 0.5; // adjust as needed
+        mat.size = 0.5;
       }
+
+      mat.needsUpdate = true;
     }
   });
 
   scene.add(cloud);
 });
+
 
 
 
